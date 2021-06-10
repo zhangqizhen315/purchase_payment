@@ -11,6 +11,9 @@ class cl008 as "cl008_评分小组成员"
 class cl009 as "cl009_标的物"
 class cl010 as "cl010_行"
 class cl011 as "cl011_行属性"
+class cl012 as "cl012_行属性得分标准"
+class cl013 as "cl013_分段价格"
+class cl014 as "cl014_分段价格行"
 
 class cl000 {
     添加题头()
@@ -94,7 +97,7 @@ class cl009  {
     显示等级
     分级: 仅限价格 / 多属性评分
     成本系数
-    价格层: 分段价格
+    价格层: 无 / 基于数量 / 分段价格
     分段价格
     创建标的物
 }
@@ -117,17 +120,47 @@ class cl010 {
 }
 class cl011 {
     行
-    组
+    属性名
+    组: 常规
+    属性类型: 必需 / 可选
+    值类型
+    标底值
+    显示标底: 是 / 否
+    权数
+    得分
+    创建行属性()
+    清除权数()
+    使权数相等()
+    设置得分规则()
 
+}
+class cl012 {
+    行属性
+    回应值
+    得分
+    创建行属性()
+}
+class cl013 {
+    回应: 无 / 可选 / 要求
+    协议发放数量: 非累计 / 累计
+}
+class cl014 {
+    收货组织
+    收货地点
+    数量
+    标底
+    有效起始日期
+    有效终止日期
 }
 
 cl001 -[hidden]down- cl009
 cl000 -[hidden]down-- cl001
 cl003 -[hidden]down- cl005
 cl005 -[hidden]down- cl006
+cl010 -[hidden]down- cl013
 
 cl000 <- cl001
-cl000 <--- cl002
+cl002 -> cl000
 
 cl001 <- cl004
 cl003 -> cl004
@@ -139,4 +172,6 @@ cl000 <- cl009
 
 cl009 <- cl010
 cl010 <- cl011
+cl009 <- cl013
+cl013 <- cl014
 @enduml
