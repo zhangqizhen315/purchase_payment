@@ -1,19 +1,35 @@
 @startuml
-class cl000 as "cl000_标书"
-class cl001 as "cl001_题头"
-class cl002 as "cl002_条款"
-class cl003 as "cl003_分区"
-class cl004 as "cl004_需求"
-class cl005 as "cl005_可接受值"
-class cl006 as "cl006_评分规则"
-class cl007 as "cl007_评分小组"
-class cl008 as "cl008_评分小组成员"
-class cl009 as "cl009_标的物"
-class cl010 as "cl010_行"
-class cl011 as "cl011_行属性"
-class cl012 as "cl012_行属性得分标准"
-class cl013 as "cl013_分段价格"
-class cl014 as "cl014_分段价格行"
+class cl000         as "cl000 洽谈"
+together {
+    together {
+        class cl001         as "cl001 题头"
+        class cl001_1       as "cl001_1 需求"
+        together {
+            class cl001_1_1     as "cl001_1_1 分区"
+            class cl001_1_2     as "cl001_1_2 需求回应的可接受值"
+    }
+    }
+    together {
+        class cl002         as "cl002 标的物"
+        together {
+            class cl002_1       as "cl002_1 行"
+            class cl002_1_1     as "cl002_1_1 行属性"
+            class cl002_1_1_1   as "cl002_1_1_1 行属性得分标准"
+        }
+        together {
+            class cl002_2       as "cl002_2 分段价格"
+            class cl002_2_1     as "cl002_2_1 分段价格行"
+        }
+    }
+    class cl003         as "cl003 条款"
+    class cl004         as "cl004 控制配置"
+    class cl005         as "cl005 供应商"
+    together {
+        class cl006         as "cl006 协作小组"
+        class cl006_1     as "cl006_1 评分小组"
+
+    }
+}
 
 class cl000 {
     添加题头()
@@ -32,11 +48,25 @@ class cl001 {
     查询业务实体()
     添加分区()
 }
-class cl002 {
+class cl003 {
     标书
     全局协议: 是 / 否
+    有效起始日期
+    有效终止日期
+    收单地址
+    收货地址
+    交货方式: EXW / FCA / FAS / FOB / CFR / CIF / CPT / CIP / DAF / DES / DEQ / DDU / DDP
+    协议总额
+    协议发放额
+    付款账期
+    承运人
+    回应币种
+    币种精度
+    创建条款()
+    查找地址()
+    查找承运人()
 }
-class cl003 {
+class cl001_1_1 {
     名称
     询价阶段: 技术 / 商业
     位置: 
@@ -46,7 +76,7 @@ class cl003 {
     移动需求()
     查询预定义分区()
 }
-class cl004 {
+class cl001_1 {
     分区
     标题
     描述
@@ -55,6 +85,9 @@ class cl004 {
     标底:
     是否向供应商显示标题: 是 / 否
     评分方法: 无 / 人工 / 自动
+    是否启用权数: 是 / 否
+    是否启用评份小组: 是 / 否
+    是否向供应商显示评分标准: 是 / 否
     最高分: 5 分制 / 100 分制
     淘汰得分:
     关键条款:
@@ -63,22 +96,14 @@ class cl004 {
     添加得分设置()
     添加可接受值()
 }
-class cl005 {
+class cl001_1_2 {
     需求
     回应值
     得分
     创建可接采值()
 
 }
-class cl006 {
-    需求
-    启用权数: 是 / 否
-    向供应商显示评分标准: 是 / 否
-    启用评分小组: 是 / 否
-    创建评分规则()
-    添加评分小组()
-}
-class cl007 {
+class cl006_1 {
     需求
     名称
     说明
@@ -86,13 +111,7 @@ class cl007 {
     创建评分小组()
     添加成员()
 }
-class cl008 {
-    评分小组
-    成员
-    创建成员()
-    查询成员()
-}
-class cl009  {
+class cl002  {
     标书
     显示等级
     分级: 仅限价格 / 多属性评分
@@ -101,7 +120,7 @@ class cl009  {
     分段价格
     创建标的物
 }
-class cl010 {
+class cl002_1 {
     标的物
     行类型
     版本
@@ -118,7 +137,7 @@ class cl010 {
     当前价格
     价格评分方法: 加权评均法 / 平均值法 / 绝对值法
 }
-class cl011 {
+class cl002_1_1 {
     行
     属性名
     组: 常规
@@ -134,17 +153,17 @@ class cl011 {
     设置得分规则()
 
 }
-class cl012 {
+class cl002_1_1_1 {
     行属性
     回应值
     得分
     创建行属性()
 }
-class cl013 {
+class cl002_2 {
     回应: 无 / 可选 / 要求
     协议发放数量: 非累计 / 累计
 }
-class cl014 {
+class cl002_2_1 {
     收货组织
     收货地点
     数量
@@ -152,26 +171,66 @@ class cl014 {
     有效起始日期
     有效终止日期
 }
+class cl004{
+    标书
+    预览日期
+    结束日期
+    开始日期
+    决标日期
+    仅限于被邀请的供应商: 是 / 否
+    允许供应商看其他供应商的合同条款, 附注和附件: 是 / 否
+    允许供应商选择要做出回应的行: 是 / 否
+    允许多个回应: 是 / 否
+    结束日期之前允许人工结束: 是 / 否
+    洽谈开始后允许人工延长: 是 / 否
 
-cl001 -[hidden]down- cl009
-cl000 -[hidden]down-- cl001
-cl003 -[hidden]down- cl005
-cl005 -[hidden]down- cl006
-cl010 -[hidden]down- cl013
+}
+class cl005 {
+    标书
+    供应商名称
+    供应商地点
+    联系人
+    电子邮件
+    添加供应商()
 
-cl000 <- cl001
-cl002 -> cl000
+}
+class cl006 {
+    成员
+    职位
+    审批人: 是 / 否
+    审批状态
+    访问: 完全 / 评分
+    目标日期:
+    任务已完成: 是 / 否
+    最后通知:
+    评分小组
+}
 
-cl001 <- cl004
-cl003 -> cl004
-cl004 <- cl005
-cl004 <- cl006
-cl006 <- cl007
-cl007 <- cl008
-cl000 <- cl009
+cl001 -[hidden]right- cl002
+cl002 -[hidden]right- cl003
+cl003 -[hidden]right- cl004
+cl004 -[hidden]right- cl005
+cl005 -[hidden]right- cl006
 
-cl009 <- cl010
-cl010 <- cl011
-cl009 <- cl013
-cl013 <- cl014
+
+cl000 <--- cl001
+cl000 <--- cl002
+cl000 <-- cl003
+cl000 <-- cl004
+cl000 <-- cl005
+cl000 <-- cl006
+
+cl001 <-- cl001_1
+cl001_1 <-- cl001_1_1
+cl001_1 <-- cl001_1_2
+
+cl002 <-- cl002_1
+cl002 <-- cl002_2
+cl002_1 <-- cl002_1_1
+cl002_2 <-- cl002_2_1
+cl002_1_1 <-- cl002_1_1_1
+
+cl006 <-- cl006_1
+
+
 @enduml
