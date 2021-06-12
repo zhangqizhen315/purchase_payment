@@ -1,0 +1,10 @@
+@startuml
+actor       ou          as "ou 业务实体人员"
+actor       sup         as "sup 供应商人员"
+usecase     uc001       as "uc001 创建洽谈"
+usecase     uc002       as "uc002 发布洽谈"
+usecase     uc003       as "uc003 投标"
+usecase     uc004       as "uc004 评标"
+usecase     uc005       as "uc005 决标"
+@enduml
+

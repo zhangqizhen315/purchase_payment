@@ -1,0 +1,22 @@
+@startuml
+|OA 系统|
+start
+:编制及审批审核计划;
+|SRM 系统|
+:录入审核任务清单;
+repeat
+:编写审核方案;
+repeat while (审核) is (未通过) not (通过)
+split
+:接收, 查看审核通过;
+split again
+repeat
+:审核实施, 填写审核查单;
+repeat while (确认) is (未通过) not (通过)
+end split
+repeat
+:审核报告;
+repeat while (审批) is (未通过) not (通过)
+:审核计划调整;
+end
+@enduml
