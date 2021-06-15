@@ -1,0 +1,59 @@
+@startuml
+|供应商|
+|供应商管理员|
+start
+split
+split
+:设置供应商评级标准;
+split again
+:设置评估指数权重参数;
+split again
+:综合实力 \ 代理级别评估;
+end split
+split again
+|项目小组|
+split 
+:供应商资料完整度;
+split again 
+:总成本占比;
+split again
+:中标率;
+split again
+:框架协议降价率;
+end split
+split again
+|接收人员|
+split 
+:到货合格率;
+split again
+:产品质量;
+split again
+:到货及时率;
+split again
+:服务态度;
+end split
+end split
+|供应商管理员|
+:提交供应商评估请求;
+:查看评估结果;
+:手工调整评估级别;
+:评估结果审批;
+split
+:评估结果发布;
+|供应商|
+:查看本供应商评估结果;
+stop
+split again
+|项目小组|
+split
+:框架协议续签;
+detach
+split again
+:洽谈;
+detach
+split again
+:供应商退出;
+detach
+end split
+end split
+@enduml

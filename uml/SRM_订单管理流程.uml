@@ -1,0 +1,29 @@
+@startuml
+|集团 \ 成员公司采购部|
+start
+split
+:采购订单;
+:添加条款;
+split again
+:协议发放;
+end split
+:采购订单审批;
+|供应商|
+:订单查看;
+:订单发货;
+|集团 \ 成员公司采购部|
+repeat
+:物流部门接收;
+:进货检验;
+if (质量是否合格) then (合格)
+    (a)
+    detach
+endif
+repeat while ( 是否退货 ) is (是) not (否)
+(a)
+:接收入库;
+:财务付款流程;
+|供应商|
+:供应商收款;
+stop
+@enduml

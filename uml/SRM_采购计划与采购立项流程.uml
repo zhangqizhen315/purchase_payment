@@ -1,0 +1,40 @@
+@startuml
+|物料管理员|
+|计划管理员|
+|采购需求部门|
+|计划管理员|
+start
+split
+split
+:集团计划导入;
+split again
+split
+:产业集团计划导入;
+split again
+:成员公司计划导入;
+end split
+:产业集团计划汇总;
+end split
+:集团计划汇总;
+|物料管理员|
+:定义计划字典表;
+split again
+|采购需求部门|
+:填写导入采购立项审请表;
+end split
+if (是否符合计划) then ( 是 )
+    :计划外审批流程;
+else (否)
+    :计划内审批流程;
+endif
+:系统审批结束;
+|计划管理员|
+:导入采购立项数据;
+:生成采购立项审批列表;
+if (是否编码) then ( 是 )
+    :新增物料信息;
+endif
+:生成申请及采购订单;
+stop
+
+@enduml

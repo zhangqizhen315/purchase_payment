@@ -1,0 +1,19 @@
+@startuml
+start
+split
+:新供应商注册;
+:录入基本信息;
+:提交注册;
+if (账户或公司名称是否重复) then (是)
+    :账户密码找回;
+else (否)
+    :查看账户密码;
+endif
+split again
+:老用户密码找回;
+:录入账户名邮箱;
+:邮箱找回初始密码;
+end split
+:登录系统;
+end
+@enduml

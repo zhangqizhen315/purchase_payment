@@ -1,0 +1,25 @@
+@startuml
+|集团采购管理部|
+start
+split
+:新增条款;
+split again
+:修改条款;
+split again
+:新增模板;
+split again
+:修改模板;
+end split
+:查看合同条款库;
+repeat
+if (是否存在条款 \ 模板) then (是)
+    :提交修改条款 \ 模板申请;
+else (否)
+    :提交拟定条款 \ 模板;
+endif
+repeat while (录入并审批条款 \ 模板) is (不通过) not (通过)
+|成员公司|
+:发放合同条款 \ 模板;
+:合同应用;
+stop
+@enduml

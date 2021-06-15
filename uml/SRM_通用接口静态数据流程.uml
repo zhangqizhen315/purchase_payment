@@ -1,0 +1,33 @@
+@startuml
+|SRM|
+split
+:建立物料信息;
+|EAI|
+:物料信息;
+|相关业务系统|
+:建立相物料信息;
+:维护物为映射关系;
+stop
+|SRM|
+split again
+split
+:建立供应商信息;
+split again
+:供应商自主注册信息;
+end split
+:供应商档案审批;
+|EAI|
+:供应商信息;
+|相关业务系统|
+:建立物料信息;
+:维护物为映身关系;
+stop
+|SRM|
+split again
+:接口监控查询;
+|EAI|
+:接口日志;
+|相关业务系统|
+:接口监控查询;
+stop
+@enduml

@@ -1,0 +1,34 @@
+@startuml
+|相关各部门人员或采购人员|
+start
+split
+split
+:采购方公告发送;
+split again
+:业务协同通知;
+split again
+:采购订单 \ 协议签订;
+:订单接收;
+end split
+|供应商|
+:门户接收查看;
+stop
+|相关各部门人员或采购人员|
+split again
+:档案信息管理;
+|供应商|
+:档案信息维护;
+stop
+|相关各部门人员或采购人员|
+split again
+:邀标信息发送;
+|供应商|
+:门户接收邀标通知;
+:门户参与投标报价;
+:门户提交报价;
+|相关各部门人员或采购人员|
+:查看报价;
+stop
+end split
+
+@enduml

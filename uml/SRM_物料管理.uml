@@ -1,0 +1,36 @@
+@startuml
+|集团/产业集团/成员公司采购员|
+start
+split
+split
+:1.1 采购寻源需求;
+split again
+:1.2 采购立项需求;
+split again
+:1.3 采购计划需求;
+split again
+:1.4 采购订单补录;
+end split
+if (2.1 是否存在品名及大小类) then (有)
+    :使用已有品名;
+    end
+endif
+:2.2 填写物料基础数据收集表;
+|集团物料管理员|
+if (3.1 是否需要新增大小类或品名) then (是)
+    :3.2 新增物料大小类或品名;
+    :3.3 物料编码组织分配;
+    end
+endif
+|集团/产业集团物料管理员|
+split again
+:1.5 招标新物料;
+split again
+:1.6 WEB AD 批量导入;
+end split
+:4.1 物料唯一性验证根据类别自动生成物料;
+:4.2 物料编码批量生成;
+:4.3 物料编码自动分配;
+end
+
+@enduml

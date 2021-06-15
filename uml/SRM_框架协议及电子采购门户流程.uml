@@ -1,0 +1,47 @@
+@startuml
+|项目小组|
+start
+split
+:查找到期框架协议;
+:框架协议续签评审;
+if (评审是否通过) then (否)
+    :供应商招标;
+    if (供应商是否更改) then (是)
+        :签订框架协议;
+    else (否)
+        (a)
+        detach
+    endif
+else (是)
+    (a)
+    :框架协议续签;
+endif
+split again
+:查找到期需核价框架协议;
+:导出物料行进行核价;
+:核价后导入框架协议;
+:框架协议核价审批;
+end split
+|采购需求部门|
+split
+:框架协议发放;
+:生成采购订单;
+split again
+:搜索框架协议;
+:选择商品放置购物车;
+if (是否为全局框架协议) then (否)
+    if (申请使用是否批准) then (否)
+        :框架协议不可用;
+        stop
+    else (是)
+    endif
+else (是)
+endif
+:确认购买;
+end split
+:生成采购订单;
+|采购经理|
+:采购订单审批;
+stop
+
+@enduml

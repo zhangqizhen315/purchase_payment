@@ -1,0 +1,34 @@
+@startuml
+|供应商用户|
+start
+split
+:供应商登录;
+:供应商数据维护;
+split
+:地址簿;
+split again
+:业务分类;
+split again
+:产品和服务;
+split again
+:资质维护;
+end split
+|供应商管理员|
+split again
+:管理员登录;
+:供应商数据维护;
+split
+:地址簿;
+split again
+:产品和分类;
+split again
+:资质维护;
+split again
+:供应商数据维护;
+end split
+end split
+:数据维护审批;
+|采购经理|
+:数据维护审批;
+end
+@enduml
